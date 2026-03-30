@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <h2>Welcome, {{ user.first_name }}!</h2>
+
+    <h3>Your Profile Details</h3>
+
+    <!-- Basic Django User Info -->
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    <!-- Extra Profile Info (from Profile model) -->
+    <p><strong>Full Name:</strong> {{ profile.name }}</p>
+    <p><strong>Mobile Number:</strong> {{ profile.mobile }}</p>
+    <p><strong>Date of Birth:</strong> {{ profile.dob }}</p>
+    <p><strong>Gender:</strong> {{ profile.gender }}</p>
+    <p><strong>Address:</strong> {{ profile.address }}</p>
+
+    <br>
+
+    <!-- Edit Profile Button -->
+    <a href="{% url 'edit_profile' %}">
+        <button>Edit Profile</button>
+    </a>
+
+    <br><br>
+
+    <!-- Logout Button -->
+    <a href="{% url 'logout' %}">
+        <button>Logout</button>
+    </a>
+
+</body>
+</html>

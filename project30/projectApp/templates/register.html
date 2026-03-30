@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+
+    <h2>Register</h2>
+
+    <!-- Display messages (errors/success) -->
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        <!-- Basic Info -->
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <!-- Contact Info -->
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="mobile">Mobile Number:</label><br>
+        <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required><br><br>
+
+        <!-- Personal Info -->
+        <label for="dob">Date of Birth:</label><br>
+        <input type="date" id="dob" name="dob" required><br><br>
+
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender">
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br><br>
+
+        <!-- Address (useful for future profile edit) -->
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address"></textarea><br><br>
+
+        <!-- Password -->
+        <label for="password1">Password:</label><br>
+        <input type="password" id="password1" name="password1" required><br><br>
+
+        <label for="password2">Confirm Password:</label><br>
+        <input type="password" id="password2" name="password2" required><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <br>
+    <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+<body>
+
+    <h2>Edit Your Profile</h2>
+
+    <!-- Messages (success/error) -->
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        <!-- Basic User Info -->
+        <h3>Basic Information</h3>
+
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ profile.name }}" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required><br><br>
+
+        <!-- Contact Info -->
+        <h3>Contact Details</h3>
+
+        <label for="mobile">Mobile Number:</label><br>
+        <input type="tel" id="mobile" name="mobile" value="{{ profile.mobile }}" pattern="[0-9]{10}" required><br><br>
+
+        <!-- Personal Info -->
+        <h3>Personal Details</h3>
+
+        <label for="dob">Date of Birth:</label><br>
+        <input type="date" id="dob" name="dob" value="{{ profile.dob|date:'Y-m-d' }}"><br><br>
+
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender">
+            <option value="">Select</option>
+            <option value="male" {% if profile.gender == "male" %}selected{% endif %}>Male</option>
+            <option value="female" {% if profile.gender == "female" %}selected{% endif %}>Female</option>
+            <option value="other" {% if profile.gender == "other" %}selected{% endif %}>Other</option>
+        </select><br><br>
+
+        <!-- Address -->
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address">{{ profile.address }}</textarea><br><br>
+
+        <!-- Submit -->
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <br>
+
+    <!-- Back to Dashboard -->
+    <a href="{% url 'dashboard' %}">
+        <button>Back to Dashboard</button>
+    </a>
+
+</body>
+</html>
